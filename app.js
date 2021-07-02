@@ -1,89 +1,30 @@
-/* 
-    @package - click to copy text
-    @content creator - silent code
-*/
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+// @package - click to copy text
+// @content creator - silent code
 
-body {
-    font-size: 10px;
-    font-family: 'Poppins', sans-serif;
-}
+'use strict';
 
-.container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+// get the elements
+const textInp = document.getElementById('text-input'),
+      copyBtn = document.getElementById('copy-btn'),
+      success = document.querySelector('.success');
 
-.title {
-    font-size: 2rem;
-    margin-bottom: 2.5rem;
-}
 
-.form-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
-    height: 20vh;
-    width:30%;
-    /* background-color: orangered; */
-}
+copyBtn.addEventListener('click', function() {
+    // select the input text field
+    textInp.select();
+    // for mobile devices
+    textInp.setSelectionRange(0, 99999);
 
-.success {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    transform: translateX(-50%);
-    font-size: 1rem;
-    color: green;
-    /* display: none; */
-    opacity: 0;
-    transition: .9s ease all;
-}
+    // execute the copy command
+    document.execCommand('copy');
 
-.success.active{
-    /* display: block; */
-    opacity: 1;
-}
+    // set the copy success message visible and hidden after 2s
+    success.classList.add('active');
+    setTimeout(function(){
+        success.classList.remove('active');
+    }, 2000);
 
-#text-input {
-    font-size: 1.6rem;
-    padding: .6rem 1rem;
-    border-radius: 0;
-    border: 1px solid black;
-}
-
-#text-input:focus {
-    outline: 0;
-}
-
-#copy-btn {
-    font-size: 1.8rem;
-    padding: .6rem;
-    background-color: black;
-    color: white;
-    border: 1px solid black;
-    border-left: 0;
-    transition: .3s ease all;
-    cursor: pointer;
-}
-
-#copy-btn:hover {
-    background-color: white;
-    color: black;
-}
-
-#copy-btn:focus {
-    background-color: green;
-}
+    // success message log
+    console.log('copy successful');
+    
+});
