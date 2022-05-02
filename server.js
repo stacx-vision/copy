@@ -2,12 +2,14 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 const path = require("path");
-app.use("/css",express.static(path.resolve(__dirname + `/css/`)));
+app.use("style.css",express.static(path.resolve(__dirname + `/style.css`)));
+app.use("app.js",express.static(path.resolve(__dirname + `/app.js`)));
+
  const templateDir = path.resolve(__dirname + `/`);
 
   app.locals.domain = process.env.PROJECT_DOMAIN;
   app.engine("html", require("ejs").renderFile);
-  app.set("view engine", "html");
+  app.set("view engine", "ejs");
 
   var bodyParser = require("body-parser");
   app.use(bodyParser.json());
