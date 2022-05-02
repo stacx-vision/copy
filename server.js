@@ -28,7 +28,7 @@ app.use("app.js",express.static(path.resolve(__dirname + `/app.js`)));
         renderTemplate(res, req, "index");
   });
   app.get("/*", (req, res) => {
-    res.send("not found")
+        renderTemplate(res, req, "404");
   });
 
 
