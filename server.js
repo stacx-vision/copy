@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 app.use(express.static("public"));
 const path = require("path");
-app.use("style.css",express.static(path.resolve(__dirname + `/style.css`)));
-app.use("app.js",express.static(path.resolve(__dirname + `/app.js`)));
+app.use("style.css",express.static(path.resolve(__dirname + `style.css`)));
+app.use("app.js",express.static(path.resolve(__dirname + `app.js`)));
 
  const templateDir = path.resolve(__dirname + `/`);
 
